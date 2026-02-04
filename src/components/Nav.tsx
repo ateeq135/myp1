@@ -8,6 +8,7 @@ const links = [
   { href: '#skills', label: 'Skills' },
   { href: '#awards', label: 'Training' },
   { href: '#contact', label: 'Contact' },
+  { href: '#professional', label: 'More' },
 ]
 
 export function Nav() {

@@ -53,7 +53,7 @@ export function Section({
 
       <div className="mt-5">
         {children}
-{title === 'Training' && (
+{(id === 'awards' || title === 'Training') && (
           <div className="mt-4">
             <a href="#professional" className="text-sm font-medium text-brand-700 hover:underline">
               View full professional profile →
