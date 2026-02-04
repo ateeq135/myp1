@@ -17,6 +17,9 @@ export default function App() {
       <Hero />
 
       <main className="mx-auto max-w-6xl px-4 pb-24">
+        {isProfessional ? <Professional /> : (
+          <>
+
         {/* <Section
           id="about"
           title="Research interests"
@@ -207,7 +210,10 @@ export default function App() {
         <footer className="pt-10 text-xs text-slate-500">
           Created by: <code className="text-slate-700">Ateeq ur Rehman</code>.
         </footer>
-      </>)}</main>
+      </>)}
+          </>
+        )}
+      </main>
     </div>
   )
 }
