@@ -1,0 +1,34 @@
+import React from 'react'
+
+const links = [
+  { href: '#about', label: 'About' },
+  { href: '#research', label: 'Research' },
+  { href: '#experience', label: 'Experience' },
+  { href: '#education', label: 'Education' },
+  { href: '#skills', label: 'Skills' },
+  { href: '#awards', label: 'Training' },
+  { href: '#contact', label: 'Contact' },
+]
+
+export function Nav() {
+  return (
+    <div className="sticky top-0 z-40 bg-white/80 backdrop-blur border-b border-slate-200">
+      <div className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between gap-3">
+        <a href="#" className="font-semibold tracking-tight text-slate-900">Profile</a>
+        <nav className="hidden md:flex items-center gap-4 text-sm text-slate-700">
+          {links.map(l => (
+            <a key={l.href} href={l.href} className="hover:text-brand-700 transition">{l.label}</a>
+          ))}
+        </nav>
+        <a
+          className="text-sm rounded-full bg-brand-600 text-white px-4 py-2 hover:bg-brand-700 transition shadow-sm"
+          href="assets/Ateeq-ur-Rehman-CV.pdf"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Download CV
+        </a>
+      </div>
+    </div>
+  )
+}
