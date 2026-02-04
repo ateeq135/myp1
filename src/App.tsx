@@ -211,7 +211,7 @@ export default function App() {
           Created by: <code className="text-slate-700">Ateeq ur Rehman</code>.
         </footer>
       </>)}
-          </>
+          </div>
         )}
       </main>
     </div>
