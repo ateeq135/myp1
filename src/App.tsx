@@ -2,12 +2,15 @@ import React from 'react'
 import { Nav } from './components/Nav'
 import { Hero } from './components/Hero'
 import { Section } from './components/Section'
+import Professional from './pages/Professional'
 import { Badge } from './components/Badge'
 import { profile } from './data/profile'
 import { ResearchCard } from './components/ResearchCard'
 import { formatRange } from './lib/utils'
 
 export default function App() {
+  const isProfessional = window.location.hash === '#professional'
+
   return (
     <div className="min-h-screen">
       <Nav />
@@ -204,7 +207,7 @@ export default function App() {
         <footer className="pt-10 text-xs text-slate-500">
           Created by: <code className="text-slate-700">Ateeq ur Rehman</code>.
         </footer>
-      </main>
+      </>)}</main>
     </div>
   )
 }
