@@ -199,4 +199,44 @@ export const profile = {
     { title: "TRIZ tools and techniques", role: "Training · NTU", start: "2018-01-01", end: "2018-01-01" },
     { title: "Developing Instructors’ Competency of Garment Technology Training Institutes (KOICA)", role: "Training · South Korea", start: "2017-01-01", end: "2017-01-01" },
   ],
+    professional_full: {
+    memberships: [
+      "Associate Fellowship of the Higher Education Academy (AFHEA) – PR268588",
+      "Board Member, Natural Materials Association (NMA), IOM3 (UK) – 681282",
+    ],
+    training_conducted: [
+      "Short course: Apparel Manufacturing Technology – NTU (2018)",
+      "Industrial Stitching Machine Operator Training – NTU (2017)",
+      "Garment Manufacturing Training – NTU (2016, 2017)",
+      "Garment Sizing & Pattern Making – NTU (2016)",
+    ],
+    training_attended: [
+      "Supervising Projects and Dissertations – University of Edinburgh (2022)",
+      "Tutors and Laboratory Demonstrators Induction – UoE (2021)",
+      "Development of Robot from E-waste – UoE (2021)",
+      "TRIZ tools and techniques – NTU (2018)",
+      "KOICA: Developing Instructors’ Competency – South Korea (2017)",
+      "Smart Materials: The Materials of Future – NTU (2017)",
+      "Research and Inferential Statistics – NTU (2017)",
+      "Outcome-Based Education – NTU (2016)",
+      "WRAP, ISO-14001 & ISO-9001 – NTU (2006)",
+      "ISO-9000 Quality Management System – Pakistan (2005)",
+    ],
+    leadership: {
+      positions: [
+        "Member, Faculty Board of Studies – NTU (2018–2019)",
+        "Convener, Departmental Societies – NTU (2019)",
+        "Member, Self-Assessment Team, BS Textile & Apparel Merchandising – NTU (2018)",
+        "Coordinator, BS Textile Engineering and BS Textile & Apparel Merchandising – NTU (2017)",
+        "Departmental purchase lead – NTU (2017)",
+      ],
+      events: [
+        "Organiser, 5th International Conference on Value Addition and Innovation in Textiles (COVITEX) – NTU (2019)",
+        "Organiser, Open Day – NTU (2018)",
+        "Organiser, International Conference on Technical Textiles – NTU (2017)",
+        "Organiser, Energy Management in Textile and Clothing Industry – NTU (2015)",
+      ],
+    },
+  },
+
 } as const
