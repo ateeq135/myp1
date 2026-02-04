@@ -9,7 +9,15 @@ import { ResearchCard } from './components/ResearchCard'
 import { formatRange } from './lib/utils'
 
 export default function App() {
-  const isProfessional = window.location.hash === '#professional'
+  const [hash, setHash] = React.useState(() => window.location.hash)
+
+  React.useEffect(() => {
+    const onHashChange = () => setHash(window.location.hash)
+    window.addEventListener('hashchange', onHashChange)
+    return () => window.removeEventListener('hashchange', onHashChange)
+  }, [])
+
+  const isProfessional = hash === '#professional'
 
   return (
     <div className="min-h-screen">
@@ -21,7 +29,7 @@ export default function App() {
           <Professional />
         ) : (
           <>
-            {/* Research (Research + Publications combined) */}
+            {/* Research */}
             <Section id="research" title="Research">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {profile.research_cards.map((r) => (
@@ -45,10 +53,7 @@ export default function App() {
                         </h3>
                         <p className="text-sm text-slate-600">{e.where}</p>
                       </div>
-
-                      <div className="text-sm text-slate-600">
-                        {formatRange(e.start, e.end)}
-                      </div>
+                      <div className="text-sm text-slate-600">{formatRange(e.start, e.end)}</div>
                     </div>
 
                     {e.tags?.length ? (
@@ -86,9 +91,7 @@ export default function App() {
                           {ed.org} · {ed.where}
                         </p>
                       </div>
-                      <div className="text-sm text-slate-600">
-                        {formatRange(ed.start, ed.end)}
-                      </div>
+                      <div className="text-sm text-slate-600">{formatRange(ed.start, ed.end)}</div>
                     </div>
                   </div>
                 ))}
@@ -114,7 +117,7 @@ export default function App() {
               </div>
             </Section>
 
-            {/* Awards + Professional Development (highlights) */}
+            {/* Awards + Professional Development highlights */}
             <Section id="awards" title="Awards & Professional Developement">
               <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
                 <ul className="space-y-4">
@@ -149,9 +152,7 @@ export default function App() {
                           <span className="font-semibold text-slate-900">{p.title}</span>
                           <span className="text-slate-600"> · {p.role}</span>
                         </div>
-                        <div className="text-sm text-slate-500">
-                          {formatRange(p.start, p.end)}
-                        </div>
+                        <div className="text-sm text-slate-500">{formatRange(p.start, p.end)}</div>
                       </li>
                     ))}
                   </ul>
@@ -209,3 +210,216 @@ export default function App() {
     </div>
   )
 }
+
+
+// import React from 'react'
+// import { Nav } from './components/Nav'
+// import { Hero } from './components/Hero'
+// import { Section } from './components/Section'
+// import Professional from './pages/Professional'
+// import { Badge } from './components/Badge'
+// import { profile } from './data/profile'
+// import { ResearchCard } from './components/ResearchCard'
+// import { formatRange } from './lib/utils'
+
+// export default function App() {
+//   const isProfessional = window.location.hash === '#professional'
+
+//   return (
+//     <div className="min-h-screen">
+//       <Nav />
+//       <Hero />
+
+//       <main className="mx-auto max-w-6xl px-4 pb-24">
+//         {isProfessional ? (
+//           <Professional />
+//         ) : (
+//           <>
+//             {/* Research (Research + Publications combined) */}
+//             <Section id="research" title="Research">
+//               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+//                 {profile.research_cards.map((r) => (
+//                   <ResearchCard key={r.title} item={r} />
+//                 ))}
+//               </div>
+//             </Section>
+
+//             {/* Experience */}
+//             <Section id="experience" title="Experience">
+//               <div className="flex flex-col gap-4">
+//                 {profile.experience.map((e) => (
+//                   <div
+//                     key={`${e.role}-${e.org}-${e.start}`}
+//                     className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm hover:shadow-md transition"
+//                   >
+//                     <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-2">
+//                       <div>
+//                         <h3 className="text-base font-semibold text-slate-900">
+//                           {e.role} · {e.org}
+//                         </h3>
+//                         <p className="text-sm text-slate-600">{e.where}</p>
+//                       </div>
+
+//                       <div className="text-sm text-slate-600">
+//                         {formatRange(e.start, e.end)}
+//                       </div>
+//                     </div>
+
+//                     {e.tags?.length ? (
+//                       <div className="flex flex-wrap gap-2 mt-3">
+//                         {e.tags.map((t) => (
+//                           <Badge key={t}>{t}</Badge>
+//                         ))}
+//                       </div>
+//                     ) : null}
+
+//                     {e.bullets?.length ? (
+//                       <ul className="mt-4 list-disc pl-5 text-sm text-slate-700 space-y-2">
+//                         {e.bullets.map((b, idx) => (
+//                           <li key={idx}>{b}</li>
+//                         ))}
+//                       </ul>
+//                     ) : null}
+//                   </div>
+//                 ))}
+//               </div>
+//             </Section>
+
+//             {/* Education */}
+//             <Section id="education" title="Education" subtitle="Academic background.">
+//               <div className="flex flex-col gap-4">
+//                 {profile.education.map((ed) => (
+//                   <div
+//                     key={`${ed.degree}-${ed.org}-${ed.start}`}
+//                     className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm hover:shadow-md transition"
+//                   >
+//                     <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-2">
+//                       <div>
+//                         <h3 className="text-base font-semibold text-slate-900">{ed.degree}</h3>
+//                         <p className="text-sm text-slate-600">
+//                           {ed.org} · {ed.where}
+//                         </p>
+//                       </div>
+//                       <div className="text-sm text-slate-600">
+//                         {formatRange(ed.start, ed.end)}
+//                       </div>
+//                     </div>
+//                   </div>
+//                 ))}
+//               </div>
+//             </Section>
+
+//             {/* Skills */}
+//             <Section id="skills" title="Skills">
+//               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+//                 {profile.skills.map((g) => (
+//                   <div
+//                     key={g.group}
+//                     className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm hover:shadow-md transition"
+//                   >
+//                     <h3 className="font-semibold text-slate-900">{g.group}</h3>
+//                     <div className="mt-3 flex flex-wrap gap-2">
+//                       {g.items.map((it) => (
+//                         <Badge key={it}>{it}</Badge>
+//                       ))}
+//                     </div>
+//                   </div>
+//                 ))}
+//               </div>
+//             </Section>
+
+//             {/* Awards + Professional Development (highlights) */}
+//             <Section id="awards" title="Awards & Professional Developement">
+//               <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+//                 <ul className="space-y-4">
+//                   {profile.awards.map((a) => (
+//                     <li
+//                       key={`${a.title}-${a.date}`}
+//                       className="flex flex-col md:flex-row md:items-center md:justify-between gap-1 text-slate-700"
+//                     >
+//                       <div>
+//                         <span className="font-semibold text-slate-900">{a.title}</span>
+//                         <span className="text-slate-600"> · {a.org}</span>
+//                       </div>
+//                       <div className="text-sm text-slate-500">
+//                         {new Date(a.date).toLocaleDateString(undefined, {
+//                           year: 'numeric',
+//                           month: 'short',
+//                           day: 'numeric',
+//                         })}
+//                       </div>
+//                     </li>
+//                   ))}
+//                 </ul>
+
+//                 <div className="mt-8">
+//                   <ul className="mt-3 space-y-4">
+//                     {profile.professional_development.map((p) => (
+//                       <li
+//                         key={`${p.title}-${p.start}`}
+//                         className="flex flex-col md:flex-row md:items-center md:justify-between gap-1 text-slate-700"
+//                       >
+//                         <div>
+//                           <span className="font-semibold text-slate-900">{p.title}</span>
+//                           <span className="text-slate-600"> · {p.role}</span>
+//                         </div>
+//                         <div className="text-sm text-slate-500">
+//                           {formatRange(p.start, p.end)}
+//                         </div>
+//                       </li>
+//                     ))}
+//                   </ul>
+//                 </div>
+//               </div>
+//             </Section>
+
+//             {/* Contact */}
+//             <Section id="contact" title="Contact">
+//               <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+//                 <p className="text-slate-700">
+//                   Email:{' '}
+//                   <a className="underline hover:text-brand-700" href={`mailto:${profile.email}`}>
+//                     {profile.email}
+//                   </a>
+//                 </p>
+//                 <p className="text-slate-700 mt-2">
+//                   Phone:{' '}
+//                   <a className="underline hover:text-brand-700" href={`tel:${profile.phone}`}>
+//                     {profile.phone}
+//                   </a>
+//                 </p>
+//                 <p className="text-slate-700 mt-2">Location: {profile.location}</p>
+
+//                 <div className="mt-5 flex flex-wrap gap-3">
+//                   {profile.links.map((l) => (
+//                     <a
+//                       key={l.href}
+//                       href={l.href}
+//                       target="_blank"
+//                       rel="noreferrer"
+//                       className="rounded-full bg-brand-100 text-brand-800 px-3 py-1.5 text-sm hover:bg-brand-200 transition"
+//                     >
+//                       {l.label}
+//                     </a>
+//                   ))}
+//                   <a
+//                     href="assets/Ateeq-ur-Rehman-CV.pdf"
+//                     target="_blank"
+//                     rel="noreferrer"
+//                     className="rounded-full bg-brand-600 text-white px-4 py-2 text-sm hover:bg-brand-700 transition shadow-sm"
+//                   >
+//                     Download CV
+//                   </a>
+//                 </div>
+//               </div>
+//             </Section>
+
+//             <footer className="pt-10 text-xs text-slate-500">
+//               Created by: <code className="text-slate-700">Ateeq ur Rehman</code>.
+//             </footer>
+//           </>
+//         )}
+//       </main>
+//     </div>
+//   )
+// }
